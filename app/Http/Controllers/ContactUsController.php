@@ -68,7 +68,7 @@ class ContactUsController extends Controller
         $new_contact->Email=$request->Email;
         $new_contact->Tel=$request->Tel;
         $new_contact->save();
-        return redirect('contacts');
+        return redirect('contact_items');
     }
 
     /**
@@ -81,8 +81,8 @@ class ContactUsController extends Controller
     {
         $SingleContact=Contact::find($id);
         if($SingleContact){
-            return view('admin.contact.manage_contact',[
-                'singles'=>$SingleContact
+            return view('admin.contact.show',[
+                'single'=>$SingleContact
             ]);
         }
     }
@@ -140,7 +140,7 @@ class ContactUsController extends Controller
             $existingContact->Tel=$request->Tel;
             $existingContact->save();
               
-            return redirect('contacts');
+            return redirect('contact_items');
 
         }
     }
@@ -156,7 +156,7 @@ class ContactUsController extends Controller
         $existingContact=Contact::find($id);
         if ($existingContact){
             $existingContact->delete();
-            return redirect('contacts');
+            return redirect('contact_items');
         }
     }
 }

@@ -37,20 +37,20 @@
 </script>
 
 <script>
-    function showAboutUsOption{
+    function showAboutUsOption(){
         window.location.href = '/AboutUs_items';
     }
 </script>
 
 <script>
     function showServicesOption(){
-        window.location.href = '/services';
+        window.location.href = '/service_items';
     }
 </script>
 
 <script>
     function showContactOption(){
-        window.location.href = '/contacts';
+        window.location.href = '/contact_items';
     }
 </script>
 

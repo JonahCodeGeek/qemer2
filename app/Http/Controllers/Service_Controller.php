@@ -62,7 +62,7 @@ class Service_Controller extends Controller
         $newService->Body=$request->Body;
         $newService->Icon=time(). $filename;
         $newService->save();
-        return redirect('services');
+        return redirect('service_items');
     }
 
     /**
@@ -75,7 +75,7 @@ class Service_Controller extends Controller
     {
         $singleService=Service::find($id);
         if($singleService){
-            return view('admin.Services.manageService',[
+            return view('admin.Services.show',[
                 'single'=>$singleService
             ]);
         }
@@ -123,7 +123,7 @@ class Service_Controller extends Controller
             $existingService->Icon=time(). $filename;
             $existingService->save();
               
-        return redirect('services');
+        return redirect('service_items');
 
         }
     }
@@ -139,7 +139,7 @@ class Service_Controller extends Controller
         $existingService=Service::find($id);
         if ($existingService){
             $existingService->delete();
-            return redirect('services');
+            return redirect('service_items');
         }
     }
 }

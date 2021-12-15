@@ -1,15 +1,7 @@
 @extends("layouts.app")
 @section('content')
 @extends('template.navbar')
-<div class="container">
-    <div class="row col-md-2 mx-auto justify-content-center ">
-<button  data-bs-toggle="modal" data-bs-target="#addSlide"
-class="btn mybtn rounded-pill mb-4 h-1 fs-3 btn-outline-success  ">Add a new contact
-</button> 
-</div>
-</div>
  <div class="container">
-      @forelse ($contacts as $contact )
     <table class="table table-bordered"> 
         <thead>
           <tr>
@@ -30,43 +22,29 @@ class="btn mybtn rounded-pill mb-4 h-1 fs-3 btn-outline-success  ">Add a new con
         </thead>
         <tbody>
             <tr>
-            <th scope="row">{{$contact->id}}</th>
-            <td class="fs-5">{{$contact->Header}}</td>
-            <td class="fs-5">{{$contact->Body}}</td>
-            <td class="fs-5">{{$contact->Email}}</td>
-            <td class="fs-5">{{$contact->Phone}}</td>
-            <td class="fs-5">{{$contact->Tel}}</td>
-            <td class="fs-5">{{$contact->location}}</td>
-            <td class="fs-5">{{$contact->Facebook}}</td>
-            <td class="fs-5">{{$contact->Twitter}}</td>
-            <td class="fs-5">{{$contact->Instagram}}</td>
-            <td class="fs-5">{{$contact->Telegram}}</td>
-            <td class="fs-5">{{$contact->LinkedIn}}</td>
-            <td class="fs-5"> <a href="admin/contact/{{ $contact->id }}" > <i data-bs-toggle="modal" data-bs-target="#edit"   class="btn  fas fa-edit fa-2x text-success"></i></a> </td>
-            <td class="fs-5"> 
-                <form id="" action="admin/contact/{{ $contact->id }}" method="POST">
-                    @csrf
-                @method('DELETE')
-             <button  class="btn fas fa-trash fa-2x text-danger"></button>
-            
-            </form>
-          </td>
+            <th scope="row">{{$single->id}}</th>
+            <td class="fs-5">{{$single->Header}}</td>
+            <td class="fs-5">{{$single->Body}}</td>
+            <td class="fs-5">{{$single->Email}}</td>
+            <td class="fs-5">{{$single->Phone}}</td>
+            <td class="fs-5">{{$single->Tel}}</td>
+            <td class="fs-5">{{$single->location}}</td>
+            <td class="fs-5">{{$single->Facebook}}</td>
+            <td class="fs-5">{{$single->Twitter}}</td>
+            <td class="fs-5">{{$single->Instagram}}</td>
+            <td class="fs-5">{{$single->Telegram}}</td>
+            <td class="fs-5">{{$single->LinkedIn}}</td>
+            <td class="fs-5"> <a> <i data-bs-toggle="modal" data-bs-target="#edit"   class="btn  fas fa-edit fa-2x text-success"></i></a> </td>
+            <td class="fs-5"><button class="btn fas fa-trash fa-2x text-danger"></button></td>
         </tr>
         </tbody>
       </table> 
-      @empty
-      <div class="container">
-          <div class="row  p-4 gap-5 justify-content-between ">
-              <h1 class="text-center fs-1"> No items available to show</h1>
-          </div>
-      </div>
-@endforelse
 </div>
 
 
 <!-- Modal for adding a new contact -->
 
-<div class="modal fade" id="addSlide" tabindex="-5" role="dialog" aria-labelledby="modelTitleId"
+<div class="modal fade" id="edit" tabindex="-5" role="dialog" aria-labelledby="modelTitleId"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -78,52 +56,53 @@ class="btn mybtn rounded-pill mb-4 h-1 fs-3 btn-outline-success  ">Add a new con
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="admin/contact/store"  method="POST">
+                            <form    method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                   <div class="control-group col-12">
                                     <label for="Header">Title</label>
-                                    <input type="text" class="form-control" name="Header" placeholder="Enter Slogan Here"  required>
+                                    <input type="text" class="form-control" name="Header" placeholder="Enter Slogan Here"  required value="{{ $single->Header }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Body">Body</label>
-                                    <input type="text" class="form-control" name="Body" placeholder="Enter slogan body  Here"  required>
+                                    <input type="text" class="form-control" name="Body" placeholder="Enter slogan body  Here"  required value="{{ $single->Body }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Email">Email</label>
-                                    <input type="email" class="form-control" name="Email" placeholder="Enter your Email Here"  required>
+                                    <input type="email" class="form-control" name="Email" placeholder="Enter your Email Here"  required value="{{ $single->Email }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Header">Location Url</label>
-                                    <input type="text" class="form-control" name="location" placeholder="Enter Location Url Here"  required>
+                                    <input type="text" class="form-control" name="location" placeholder="Enter Location Url Here"  required value="{{ $single->location }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Tel">Telephone</label>
-                                    <input type="text" class="form-control" name="Tel" placeholder="Enter your Telephone number"  required>
+                                    <input type="text" class="form-control" name="Tel" placeholder="Enter your Telephone number"  required value="{{ $single->Tel }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Phone">Phone</label>
-                                    <input type="number" class="form-control" name="Phone" placeholder="EEnter your mobile phone number"   required>
+                                    <input type="number" class="form-control" name="Phone" placeholder="Enter your mobile phone number"   required value="{{ $single->Phone }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Instagram">Instagram</label>
-                                    <input type="text" class="form-control" name="Instagram" placeholder="Enter your Instagram address Here"  required>
+                                    <input type="text" class="form-control" name="Instagram" placeholder="Enter your Instagram address Here"  required value="{{ $single->Instagram }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="LinkedIn">LinkedIn</label>
-                                    <input type="text" class="form-control" name="LinkedIn" placeholder="Enter LinkedIn url Here"  required>
+                                    <input type="text" class="form-control" name="LinkedIn" placeholder="Enter LinkedIn url Here"  required value="{{ $single->LinkedIn }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Twitter">Twitter</label>
-                                    <input type="text" class="form-control" name="Twitter" placeholder="Enter Twitter address Here"  required>
+                                    <input type="text" class="form-control" name="Twitter" placeholder="Enter Twitter address Here"  required value="{{ $single->Twitter }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Telegram">Telegram</label>
-                                    <input type="text" class="form-control" name="Telegram" placeholder="Enter your Telegram address Here"  required>
+                                    <input type="text" class="form-control" name="Telegram" placeholder="Enter your Telegram address Here"  required value="{{ $single->Telegram }}">
                                   </div>
                                   <div class="control-group col-12">
                                     <label for="Facebook">Facebook</label>
-                                    <input type="text" class="form-control" name="Facebook" placeholder="Enter your facebok address Here"  required>
+                                    <input type="text" class="form-control" name="Facebook" placeholder="Enter your facebok address Here"  required value="{{ $single->Facebook }}">
                                   </div>
                                   <div class="row mt-4  ">
                                     <div class="control-group col-12 text-center">
@@ -143,9 +122,6 @@ class="btn mybtn rounded-pill mb-4 h-1 fs-3 btn-outline-success  ">Add a new con
         </div>
     </div>
 </div>
-
-
- 
-
 @endsection
+
   

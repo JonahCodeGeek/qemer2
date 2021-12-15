@@ -22,9 +22,9 @@ use App\Http\Controllers\ContactUsController;
 // Route::get('/index', function () {
 //     return view('index');
 // });
-Route::get('/contact', function () {
-    return view('pages.contact-page');
-});
+// Route::get('/contact', function () {
+//     return view('pages.contact-page');
+// });
 Auth::routes();
 
 //WelcomePage Routs
@@ -32,6 +32,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome');
 Route::get('/services', [App\Http\Controllers\HomeController::class, 'service'])->name('pages.service-page');
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'about'])->name('pages.about-page');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('pages.contact-page');
 //contact us page
 
                                             //Carusel-related routes
@@ -45,7 +46,7 @@ Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'about'])->
 
                                             });
 
-Route::get('services',[Service_Controller::class,'index']);
+Route::get('service_items',[Service_Controller::class,'index']);
 Route::prefix('/admin/service_items')->group( function () {
 Route::post('/store',[Service_Controller::class,'store']);
 Route::put('/{id}',[Service_Controller::class,'update']);
@@ -53,8 +54,8 @@ Route::delete('/{id}',[Service_Controller::class,'destroy']);
 Route::get('/{id}',[Service_Controller::class,'show']);
 
 });
-
-                                            Route::get('contacts',[ContactUsController::class,'index']);
+                                            //contactUs routes
+                                            Route::get('contact_items',[ContactUsController::class,'index']);
                                             Route::prefix('/admin/contact')->group( function () {
                                             Route::post('/store',[ContactUsController::class,'store']);
                                             Route::put('/{id}',[ContactUsController::class,'update']);
