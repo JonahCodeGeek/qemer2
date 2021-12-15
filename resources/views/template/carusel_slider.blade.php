@@ -1,63 +1,47 @@
 <div id="carouselExampleCaptions" class="carousel slide carousel-fade " data-bs-ride="carousel">
+
     <div class="carousel-indicators">
+        @foreach ($items as $item)
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
             aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+        @endforeach
+        
+        @for ($i =0; $i >=4; $i++)
+             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={{ $i }} aria-label="Slide 2"></button>
+        @endfor
+       
+       
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
-            <img src="https://everynurse.org/wp-content/uploads/2021/06/Surgery-Nurse-Featured.png"
+            <img src="{{ asset('storage/slider_images/'.$item->slide_image) }}"
                 class="d-block w-100 img2 " alt="...">
             <div class="carousel-caption col-md-5 group1 " data-aos="flip-left">
-                <h1 class="myh2 text-start ">Who Are We ?</h1>
-                <p class="myp text-start lh-1">HYSSOP PHARMA TRADING PLC. Was Established In 2013E.C (2021G.C),
-                    By Two Ethiopian Physicians. It Is Located In Shegole,
-                    Infront Of Kenema Pharmacy Head Office, Peace Building 2nd Floor,
-                    Gulelle Sub City, Addis Abeba, Ethiopia. The Company’s Goal Is To Become
-                    The Most Accessible Platform Which Provides A Solution For Every Health-Related Issues.
-                </p>
+                <h1 class="myh2 text-start ">{!! $item->Header !!}</h1>
+                <p class="myp text-start lh-1">{!! $item->Header !!}</p>
                 <button onClick="register()" data-bs-toggle="modal" data-bs-target="#registerToogle"
                     class="btn mybtn rounded-pill btn-outline-success d-flex justify-content-start">GET STARTED
                     NOW</button>
             </div>
         </div>
+        
+        @foreach ($items as $item)
         <div class="carousel-item" data-bs-interval="5000">
-            <img src="https://res.cloudinary.com/instor/image/upload/v1554446138/Cosmetics-Racks-3.jpg"
+            <img src="{{ asset('storage/slider_images/'.$item->slide_image) }}"
                 class="d-block w-100 img2" alt="...">
             <div class="carousel-caption col-md-5 group1">
-                <h1 class="myh2 text-start">Who Are We ?</h1>
-                <p class="myp text-start lh-1">HYSSOP PHARMA TRADING PLC. Was Established In 2013E.C (2021G.C),
-                    By Two Ethiopian Physicians. It Is Located In Shegole,
-                    Infront Of Kenema Pharmacy Head Office, Peace Building 2nd Floor,
-                    Gulelle Sub City, Addis Abeba, Ethiopia. The Company’s Goal Is To Become
-                    The Most Accessible Platform Which Provides A Solution For Every Health-Related Issues.
-                </p>
+            
+                <h1 class="myh2 text-start ">{!! $item->Header !!}</h1>
+                <p class="myp text-start lh-1">{!! $item->Header !!}</p>
                 <button onClick="register()" data-bs-toggle="modal" data-bs-target="#registerToogle"
                     class="btn mybtn rounded-pill btn-outline-success d-flex justify-content-start">GET STARTED
                     NOW</button>
             </div>
         </div>
-        <div class="carousel-item" data-bs-interval="5000" data-aos="flip-right">
-            <img src="https://solvecfs.org/wp-content/uploads/2018/10/LAB-1200x801.jpg" class="d-block w-100 img2"
-                alt="...">
-            <div class="carousel-caption col-md-5 group1">
-                <h1 class="myh2 text-start ">Who Are We ?</h1>
-                <p class="myp text-start lh-1">HYSSOP PHARMA TRADING PLC. Was Established In 2013E.C (2021G.C),
-                    By Two Ethiopian Physicians. It Is Located In Shegole,
-                    Infront Of Kenema Pharmacy Head Office, Peace Building 2nd Floor,
-                    Gulelle Sub City, Addis Abeba, Ethiopia. The Company’s Goal Is To Become
-                    The Most Accessible Platform Which Provides A Solution For Every Health-Related Issues.
-                </p>
-                <button onClick="register()" data-bs-toggle="modal" data-bs-target="#registerToogle"
-                    class="btn mybtn rounded-pill btn-outline-success d-flex justify-content-start">GET STARTED
-                    NOW</button>
-            </div>
-        </div>
-    </div>
+               
 
+    </div>
+     @endforeach
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>

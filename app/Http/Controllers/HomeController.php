@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Carousel_items;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $carouselContent= Carousel_items::orderBy('created_at','asc')->get();
+        return view('welcome',[
+            'items' => $carouselContent
+
+        ]);
     }
     public function service()
     {
